@@ -1,51 +1,32 @@
 #include <stdio.h>
-#include <stdbool.h>
 #include <math.h>
+#include <stdbool.h>
 #include "rectangleSolver.h"
 
-void handleRectangle() {
-    double points[4][2];
-    printf_s("Enter four points as x y pairs:\n");
-    for (int i = 0; i < 4; i++) {
-        printf_s("Point %d (x y): ", i + 1);
-        if (scanf_s("%lf %lf", &points[i][0], &points[i][1]) != 2 ){
-            printf_s("Invalid input. Restarting rectangle process.\n");
-            return;
-        }
-    }
-
-    double distances[4];
-    distances[0] = calculateDistance(points[0][0], points[0][1], points[1][0], points[1][1]);
-    distances[1] = calculateDistance(points[1][0], points[1][1], points[2][0], points[2][1]);
-    distances[2] = calculateDistance(points[2][0], points[2][1], points[3][0], points[3][1]);
-    distances[3] = calculateDistance(points[3][0], points[3][1], points[0][0], points[0][1]);
-
-    double perimeter = calculatePerimeter(distances);
-    printf_s("Perimeter: %.2f\n", perimeter);
-
-    if (isRectangle(distances)) {
-        double area = calculateRectangleArea(distances);
-        printf_s("The shape is a rectangle with area: %.2f\n", area);
-    }
-    else {
-        printf_s("The shape is not a rectangle.\n");
-    }
+double calculateDistance(Point p1, Point p2) {
+    return sqrt((double)(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2)));
 }
 
-double calculateDistance(double x1, double y1, double x2, double y2) {
-    return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+bool isRectangle(Point p1, Point p2, Point p3, Point p4) {
+    double d1 = calculateDistance(p1, p2);
+    double d2 = calculateDistance(p2, p3);
+    double d3 = calculateDistance(p3, p4);
+    double d4 = calculateDistance(p4, p1);
+    double diag1 = calculateDistance(p1, p3);
+    double diag2 = calculateDistance(p2, p4);
+
+    return (d1 == d3 && d2 == d4 && diag1 == diag2);
 }
 
-bool isRectangle(double distances[]) {
-    double diagonal1 = calculateDistance(0, 0, distances[0], distances[2]); // Hypothetical diagonal
-    double diagonal2 = calculateDistance(0, 0, distances[1], distances[3]);
-    return fabs(diagonal1 - diagonal2) < 0.01; // Allow minor float differences
+double calculatePerimeterFromPoints(Point p1, Point p2, Point p3, Point p4) {
+    double d1 = calculateDistance(p1, p2);
+    double d2 = calculateDistance(p2, p3);
+    return 2 * (d1 + d2);
 }
 
-double calculatePerimeter(double distances[]) {
-    return distances[0] + distances[1] + distances[2] + distances[3];
+double calculateAreaFromPoints(Point p1, Point p2, Point p3, Point p4) {
+    double d1 = calculateDistance(p1, p2);
+    double d2 = calculateDistance(p2, p3);
+    return d1 * d2;
 }
 
-double calculateRectangleArea(double distances[]) {
-    return distances[0] * distances[1]; // Assumes user entered rectangle-like order
-}

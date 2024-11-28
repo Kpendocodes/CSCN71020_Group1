@@ -1,6 +1,11 @@
 #pragma once
-void handleRectangle();
-bool isRectangle(double distances[]);
-double calculateDistance(double x1, double y1, double x2, double y2);
-double calculatePerimeter(double distances[]);
-double calculateRectangleArea(double distances[]);
+
+typedef struct Point {
+    int x;
+    int y;
+} Point;
+
+double calculateDistance(Point p1, Point p2);
+bool isRectangle(Point p1, Point p2, Point p3, Point p4);
+double calculatePerimeterFromPoints(Point p1, Point p2, Point p3, Point p4);
+double calculateAreaFromPoints(Point p1, Point p2, Point p3, Point p4);

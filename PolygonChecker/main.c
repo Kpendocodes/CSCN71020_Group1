@@ -22,7 +22,7 @@ int main() {
             break;
         case 2:
             printf_s("Rectangle selected.\n");
-            handleRectangle();
+            getRectanglePoints();
             break;
         case 0:
             continueProgram = false;
@@ -70,4 +70,26 @@ int* getTriangleSides(int* triangleSides) {
         }
     }
     return triangleSides;
+}
+
+void getRectanglePoints() {
+    Point points[4];
+    printf_s("Enter the coordinates of four points (x y):\n");
+    for (int i = 0; i < 4; i++) {
+        printf_s("Point %d: ", i + 1);
+        scanf_s("%d %d", &points[i].x, &points[i].y);
+    }
+
+    if (isRectangle(points[0], points[1], points[2], points[3])) {
+        printf_s("The points form a rectangle.\n");
+
+        double perimeter = calculatePerimeterFromPoints(points[0], points[1], points[2], points[3]);
+        double area = calculateAreaFromPoints(points[0], points[1], points[2], points[3]);
+
+        printf_s("Perimeter: %.2lf\n", perimeter);
+        printf_s("Area: %.2lf\n", area);
+    }
+    else {
+        printf_s("The points do not form a rectangle.\n");
+    }
 }
