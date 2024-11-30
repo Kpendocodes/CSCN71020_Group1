@@ -29,4 +29,3 @@ double calculateAreaFromPoints(Point p1, Point p2, Point p3, Point p4) {
     double d2 = calculateDistance(p2, p3);
     return d1 * d2;
 }
-

@@ -26,7 +26,6 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 		printf_s("Angle A: %.2f degrees\n", angleA);
 		printf_s("Angle B: %.2f degrees\n", angleB);
 		printf_s("Angle C: %.2f degrees\n", angleC);
-		/*result = "Equilateral triangle";*/
 	}
 	else if (((side1 == side2 && side1 != side3) || 
 		(side1 == side3 && side1 != side2)) ||
@@ -40,7 +39,6 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 		printf_s("Angle A: %.2f degrees\n", angleA);
 		printf_s("Angle B: %.2f degrees\n", angleB);
 		printf_s("Angle C: %.2f degrees\n", angleC);
-		/*result = "Isosceles triangle";*/
 	}
 	else {
 		double angleA = calculateAngle(side2, side3, side1);
@@ -51,7 +49,6 @@ char* analyzeTriangle(int side1, int side2, int side3) {
 		printf_s("Angle A: %.2f degrees\n", angleA);
 		printf_s("Angle B: %.2f degrees\n", angleB);
 		printf_s("Angle C: %.2f degrees\n", angleC);
-		/*return "Scalene triangle";*/
 	}
 
 	return result;
