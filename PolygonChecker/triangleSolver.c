@@ -3,6 +3,7 @@
 #include <math.h>
 #include "triangleSolver.h"
 
+
 #define PI		3.14
 
 double calculateAngle(double side1, double side2, double side3) {
