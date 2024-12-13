@@ -1,9 +1,9 @@
 #pragma once
 
-typedef struct Point {
+typedef struct {
     int x;
     int y;
-} Point;
+}Point;
 
 double calculateDistance(Point p1, Point p2);
 bool isRectangle(Point p1, Point p2, Point p3, Point p4);
